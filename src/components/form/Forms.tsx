@@ -42,20 +42,8 @@ import { TextField } from "formik-material-ui"
 const initialValues = {
     projectName: "",
     projectId: "",
-    occupation: "",
-    city: "",
-    country: "",
-    email: "",
-    password: "",
+    amount: "",
 }
-
-const options = [
-    { label: "Computer Programmer", value: "Computer_programmer" },
-    { label: "Web Developer", value: "web_developer" },
-    { label: "User Experience Designer", value: "user_experience_designer" },
-    { label: "Systems Analyst", value: "systems_analyst" },
-    { label: "Quality Assurance Tester", value: "quality_assurance_tester" },
-]
 
 //password validation
 const lowercaseRegEx = /(?=.*[a-z])/
@@ -67,19 +55,7 @@ const lengthRegEx = /(?=.{6,})/
 let validationSchema = Yup.object().shape({
     projectName: Yup.string(),
     projectId: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string()
-        .matches(
-            lowercaseRegEx,
-            "Must contain one lowercase alphabetical character!"
-        )
-        .matches(
-            uppercaseRegEx,
-            "Must contain one uppercase alphabetical character!"
-        )
-        .matches(numericRegEx, "Must contain one numeric character!")
-        .matches(lengthRegEx, "Must contain 6 characters!")
-        .required("Required!"),
+    amount: Yup.string().required("Required"),
 })
 
 const Forms = () => {
@@ -104,7 +80,7 @@ const Forms = () => {
                                     <CardContent>
                                         <Grid item container spacing={1} justifyContent="center">
                                             <Grid item
-                                            // xs={12} sm={6} md={6}
+                                                xs={12} sm={6} md={12}
                                             >
                                                 <Field
                                                     label="Project Name"
@@ -118,7 +94,7 @@ const Forms = () => {
 
                                             <Grid item container spacing={1} justifyContent="center">
                                                 <Grid item
-                                                // xs={12} sm={6} md={6}
+                                                    xs={12} sm={6} md={12}
                                                 >
                                                     <Field
                                                         label="Project Id"
@@ -133,82 +109,24 @@ const Forms = () => {
 
 
                                             <Grid item xs={12} sm={6} md={12}>
-                                                <FormControl fullWidth variant="outlined">
-                                                    <InputLabel id="demo-simple-select-outlined-label">
-                                                        Occupation
-                                                    </InputLabel>
-                                                    <Select
-                                                        labelId="demo-simple-select-outlined-label"
-                                                        id="demo-simple-select-outlined"
-                                                        label="Occupation"
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        value={values.occupation}
-                                                        name="occupation">
-                                                        <MenuItem>None</MenuItem>
-                                                        {options.map((item) => (
-                                                            <MenuItem key={item.value} value={item.value}>
-                                                                {item.label}
-                                                            </MenuItem>
-                                                        ))}
-                                                    </Select>
-                                                </FormControl>
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={6}>
                                                 <Field
-                                                    label="City"
+                                                    label="Amount"
                                                     variant="outlined"
                                                     fullWidth
-                                                    name="city"
-                                                    value={values.city}
+                                                    name="amount"
+                                                    value={values.amount}
                                                     component={TextField}
                                                 />
                                             </Grid>
-                                            <Grid item xs={12} sm={6} md={6}>
-                                                <Field
-                                                    label="Country"
-                                                    variant="outlined"
-                                                    fullWidth
-                                                    name="country"
-                                                    value={values.country}
-                                                    component={TextField}
-                                                />
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={6}>
-                                                <Field
-                                                    label="Email"
-                                                    variant="outlined"
-                                                    fullWidth
-                                                    name="email"
-                                                    value={values.email}
-                                                    component={TextField}
-                                                />
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={6}>
-                                                <Field
-                                                    label="Password"
-                                                    variant="outlined"
-                                                    fullWidth
-                                                    name="password"
-                                                    value={values.password}
-                                                    type="password"
-                                                    component={TextField}
-                                                />
-                                            </Grid>
+
                                         </Grid>
                                     </CardContent>
                                     <CardActions>
-                                        {/* <Button
-                      disabled={!dirty || !isValid}
-                      variant="contained"
-                      color="primary"
-                      type="Submit"
-                      className={classes.button}>
-                      REGISTER
-                    </Button> */}
                                         <Button
+                                            disabled={!dirty || !isValid}
                                             variant="contained"
                                             color="primary"
+                                            type="submit"
                                         >Register</Button>
                                     </CardActions>
                                 </Form>
