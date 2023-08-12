@@ -14,6 +14,7 @@ import { useState } from 'react'
 import { CodeBlock, atomOneDark } from 'react-code-blocks'
 
 import AddressLabel from 'src/components/address-label/AddressLabel'
+import Forms from 'src/components/form/Forms'
 import GelatoTaskStatusLabel from 'src/components/gelato-task-status-label/GelatoTaskStatusLabel'
 import SafeInfo from 'src/components/safe-info/SafeInfo'
 import { useAccountAbstraction } from 'src/store/accountAbstractionContext'
@@ -46,18 +47,14 @@ const RelayerKitDemo = () => {
   return (
     <>
       <Typography variant="h2" component="h1">
-        The Relay Kit
+        Fund Project
       </Typography>
 
       <Typography marginTop="16px">
-        Allow users to pay fees using any ERC-20 tokens, without having to manage gas. Sponsor
-        transactions on behalf of your users. On your first relayed transaction, a Safe Account will
-        be automatically deployed and your address will be assigned as the Safe owner.
+        Fund any project by just entering the project id and amount that you want to contribute.
       </Typography>
 
-      <Typography marginTop="24px" marginBottom="8px">
-        Find more info at:
-      </Typography>
+
 
       <Stack direction="row" alignItems="center" spacing={2}>
         <Link
@@ -180,35 +177,18 @@ const RelayerKitDemo = () => {
 
       <Divider style={{ margin: '40px 0 30px 0' }} />
 
-      <Typography variant="h3" component="h2" fontWeight="700" marginBottom="16px">
-        How to use it
-      </Typography>
+      <ConnectedContainer>
+        <Head> Fund Project </Head>
+        <Forms />
+      </ConnectedContainer>
 
-      {/* TODO: create a component for this? */}
-      <CodeContainer>
-        <CodeBlock
-          text={code}
-          language={'javascript'}
-          showLineNumbers
-          startingLineNumber={96}
-          theme={atomOneDark}
-        />
-      </CodeContainer>
+
+
     </>
   )
 }
 
 export default RelayerKitDemo
-
-const code = `import { GelatoRelayPack } from '@safe-global/relay-kit'
-
-const relayPack = new GelatoRelayPack()
-
-relayPack.relayTransaction({
-  target: '0x...', // the Safe address
-  encodedTransaction: '0x...', // Encoded Safe transaction data
-  chainId: 5
-})`
 
 const ConnectedContainer = styled(Box)<{
   theme?: Theme
@@ -221,12 +201,7 @@ const ConnectedContainer = styled(Box)<{
 `
 )
 
-const CodeContainer = styled(Box)<{
-  theme?: Theme
-}>(
-  ({ theme }) => `
-  border-radius: 10px;
-  border: 1px solid ${theme.palette.border.light};
-  padding: 16px;
+
+
+const Head = styled.h1`
 `
-)
