@@ -1,8 +1,22 @@
-# Account Abstraction demo app
+# Account Abstraction on Base Gorelli + 5 Chains
 
-[The Safe{Core} SDK](https://github.com/safe-global/safe-core-sdk) allows builders to add account abstraction functionality into their apps. This demo is an example on how to use our different packages (Auth Kit, OnRamp Kit & Relay Kit).
-
+[The Safe{Core} SDK](https://github.com/safe-global/safe-core-sdk) allows builders to add account abstraction functionality into our App. 
 See the [Safe{Core} Account Abstraction SDK Docs](https://docs.safe.global/learn/safe-core-account-abstraction-sdk) for more details.
+
+## How We are doing this ? We are relaying the transaction for our DAO Members.
+```
+  async relayTransaction({
+    target,
+    encodedTransaction,
+    chainId,
+    options
+  }: RelayTransaction): Promise<RelayResponse> {
+    const response = options.isSponsored
+      ? this.sendSponsorTransaction(target, encodedTransaction, chainId)
+      : this.sendSyncTransaction(target, encodedTransaction, chainId, options)
+    return response
+  }
+```
 
 ## Installation
 
@@ -26,7 +40,7 @@ REACT_APP_STRIPE_PUBLIC_KEY=pk_test_51MZbmZKSn9ArdBimSyl5i8DqfcnlhyhJHD8bF2wKrGk
 
 ```
 
-Run the demo App:
+Run the App:
 
 ```bash
 yarn start
