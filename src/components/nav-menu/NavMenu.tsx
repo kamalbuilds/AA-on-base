@@ -16,7 +16,7 @@ const NavMenu = ({ setStep, activeStep }: NavMenuProps) => {
       <MenuList>
         <NavItem onClick={() => setStep(0)} active={activeStep === 0}>
           <Typography fontWeight="700" fontSize="20px">
-            Intro
+            Get Started
           </Typography>
         </NavItem>
 
@@ -25,19 +25,11 @@ const NavMenu = ({ setStep, activeStep }: NavMenuProps) => {
             01
           </OrderLabel>
           <Typography fontWeight="700" fontSize="20px" marginLeft="12px">
-            Create Safe
+            Create a Safe
           </Typography>
         </NavItem>
 
-        {/* <NavItem onClick={() => setStep(2)} active={activeStep === 2}>
-          <OrderLabel fontSize="10px" fontWeight="700">
-            02
-          </OrderLabel>
-          <Typography fontWeight="700" fontSize="20px" marginLeft="12px">
-            Onramp Kit
-          </Typography>
-        </NavItem> */}
-
+      
         <NavItem onClick={() => setStep(2)} active={activeStep === 2}>
           <OrderLabel fontSize="10px" fontWeight="700">
             02

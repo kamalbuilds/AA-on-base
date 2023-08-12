@@ -63,12 +63,12 @@ export const mumbaiChain: Chain = {
 export const basegorelliChain: Chain = {
     id: '0x14a33',
     token: 'ETHEREUM',
-    label: 'ETH',
+    label: 'Base Gorelli',
     shortName: 'ETH',
-    rpcUrl: 'https://base-goerli.public.blastapi.io',
+    rpcUrl: 'https://responsive-stylish-snowflake.base-goerli.discover.quiknode.pro/0c108f72ab3dabce11f1f359c4a7c9a6b35fcedc/',
     blockExplorerUrl: 'https://goerli.basescan.org/',
     color: '#fbc02d',
-    transactionServiceUrl: 'https://safe-transaction-base-testnet.safe.global/',
+    // transactionServiceUrl: 'https://safe-transaction-base-testnet.safe.global/',
     isStripePaymentsEnabled: false
 }
 

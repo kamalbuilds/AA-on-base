@@ -8,10 +8,10 @@ import { useCallback, useState } from 'react'
 
 import Header from 'src/components/header/Header'
 import Providers from 'src/components/providers/Providers'
-import AuthKitDemo from 'src/pages/AuthKitDemo'
+import AuthKitDemo from 'src/pages/AuthKit'
 import Intro from 'src/pages/Intro'
 import OnRampKitDemo from 'src/pages/OnRampKitDemo'
-import RelayerKitDemo from 'src/pages/RelayerKitDemo'
+import RelayerKitDemo from 'src/pages/RelayerKit'
 import NavMenu from './components/nav-menu/NavMenu'
 import SafeCoreInfo from './components/safe-core-info/SafeCoreInfo'
 

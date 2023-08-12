@@ -6,7 +6,6 @@ import Divider from '@mui/material/Divider'
 import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { CodeBlock, atomOneDark } from 'react-code-blocks'
 
 import ConnectedWalletLabel from 'src/components/connected-wallet-label/ConnectedWalletLabel'
 import SafeInfo from 'src/components/safe-info/SafeInfo'
@@ -18,11 +17,11 @@ const AuthKitDemo = () => {
   return (
     <>
       <Typography variant="h2" component="h1">
-        Create Your Safe
+        Create a Safe for yourself with just your gmail id
       </Typography>
 
       <Typography marginTop="16px">
-        Wanna learn how we implemented this safe? Find more info at:
+        Account Abstraction is Implemented on base gorelli too along with 5 other chains
       </Typography>
       <Stack direction="row" alignItems="center" spacing={2}>
         <Link

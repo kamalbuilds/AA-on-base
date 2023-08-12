@@ -27,7 +27,7 @@ const Intro = ({ setStep }: IntroProps) => {
       </Typography>
 
       <Typography variant="h1" fontSize="64px" lineHeight="76px">
-        Account Abstraction
+        Account Abstraction on Base + 5 chains
       </Typography>
 
       <Typography variant="body1">
