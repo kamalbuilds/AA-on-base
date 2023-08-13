@@ -3,7 +3,9 @@
 [The Safe{Core} SDK](https://github.com/safe-global/safe-core-sdk) allows builders to add account abstraction functionality into our App. 
 See the [Safe{Core} Account Abstraction SDK Docs](https://docs.safe.global/learn/safe-core-account-abstraction-sdk) for more details.
 
-## How We are doing this ? We are relaying the transaction for our DAO Members.
+![base](https://github.com/kamalbuilds/AA-on-base/assets/95926324/36ff37c8-1ca1-49b2-9cb9-cf1798cbcd29)
+
+## How We are doing this ? We are relaying the transaction for our DAO Members those who have the membership NFT.
 ```
   async relayTransaction({
     target,
