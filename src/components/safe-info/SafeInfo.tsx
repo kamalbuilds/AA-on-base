@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
-import { Skeleton, Theme } from '@mui/material'
+import { Button, Skeleton, Theme } from '@mui/material'
 import styled from '@emotion/styled'
 import { ethers, providers, utils } from 'ethers'
 import Safe, { EthersAdapter } from '@safe-global/protocol-kit'
@@ -155,17 +155,19 @@ function SafeInfo({ safeAddress, chainId }: SafeInfoProps) {
         {isLoading && <Skeleton variant="text" width={110} height={20} />}
 
         {!isDeployed && !isDeployLoading && (
-          <CreationPendingLabel>
-            <Tooltip title="This Safe is not deployed yet, it will be deployed when you execute the first transaction">
-              <Typography fontWeight="700" fontSize="12px" color="inherit">
-                Creation pending
-              </Typography>
-            </Tooltip>
+          <>
+            <CreationPendingLabel>
+              <Tooltip title="This Safe is not deployed yet, it will be deployed when you execute the first transaction">
+                <Typography fontWeight="700" fontSize="12px" color="inherit">
+                  Creation pending
+                </Typography>
 
-          </CreationPendingLabel>
+              </Tooltip>
+            </CreationPendingLabel>
+
+            <Button onClick={handleFirstTransaction}>Send First Transaction</Button>
+          </>
         )}
-
-        <div onClick={handleFirstTransaction}>Send First Transaction</div>
 
         {!isLoading && (
           <AmountContainer>
@@ -178,6 +180,7 @@ function SafeInfo({ safeAddress, chainId }: SafeInfoProps) {
             </Typography>
           </AmountContainer>
         )}
+
       </Stack>
     </Stack>
   )

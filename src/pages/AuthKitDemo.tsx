@@ -22,13 +22,8 @@ const AuthKitDemo = () => {
       </Typography>
 
       <Typography marginTop="16px">
-        What is a Safe? A safe is basically a
+        Wanna learn how we implemented this safe? Find more info at:
       </Typography>
-
-      <Typography marginTop="24px" marginBottom="8px">
-        Find more info at:
-      </Typography>
-
       <Stack direction="row" alignItems="center" spacing={2}>
         <Link
           href="https://docs.safe.global/getting-started/readme"
@@ -42,7 +37,7 @@ const AuthKitDemo = () => {
 
       {/* Auth Demo */}
       <Typography variant="h4" component="h2" fontWeight="700" marginBottom="16px">
-        Interactive demo
+        Create Safe in simple steps:
       </Typography>
 
       {isAuthenticated ? (

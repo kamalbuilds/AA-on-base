@@ -33,6 +33,7 @@ function Header({ setStep }: HeaderProps) {
             id="app-logo-header"
             src={logo}
             alt="app logo"
+            height="40px"
           />
 
           <Box display="flex" alignItems="center" justifyContent="flex-end" flexGrow={1} gap={1}>
