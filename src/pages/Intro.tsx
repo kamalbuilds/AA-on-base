@@ -21,15 +21,17 @@ const Intro = ({ setStep }: IntroProps) => {
       paddingTop="72px"
       paddingLeft="100px"
     >
-      <img src={safeLogo} alt="safe logo" height="30px" />
+
+      <Typography variant="body1">
+        Powered By Safe and Web3Auth
+      </Typography>
 
       <Typography variant="h1" fontSize="64px" lineHeight="76px">
-        Account Abstraction SDK
+        Account Abstraction
       </Typography>
 
       <Typography variant="body1">
-        Add account abstraction functionality into your apps. Here you can find examples on how to
-        use our different kits:
+        You can follow the steps to create account and fund for you project in 2 easy steps. No need for any wallet or any other things. You can login via google.
       </Typography>
 
       {/* Kit list */}
@@ -56,14 +58,14 @@ const Intro = ({ setStep }: IntroProps) => {
       <Divider style={{ alignSelf: 'stretch', margin: '42px 0' }} />
 
       <Typography variant="h2" fontWeight="700" fontSize="20px">
-        First select the network in which you want to create your safe
+        Select the network from the drop Down
       </Typography>
 
       <Box display="flex" gap={2} marginTop="32px" alignItems="center">
         <ChainSelector />
 
         <Button variant="contained" onClick={() => setStep(1)}>
-          Start Demo
+          Let's Gooooo
         </Button>
       </Box>
     </Box>
