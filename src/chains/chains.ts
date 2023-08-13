@@ -72,8 +72,20 @@ export const basegorelliChain: Chain = {
     isStripePaymentsEnabled: false
 }
 
+export const opgorelliChain: Chain = {
+    id: '0x1a4',
+    token: 'OP',
+    label: 'OP Gorelli',
+    shortName: 'OP',
+    rpcUrl: 'https://opt-goerli.g.alchemy.com/v2/e1-xZUsVn8cFs1deExUpYSLjiFHhRU54',
+    blockExplorerUrl: 'https://goerli-optimism.etherscan.io/',
+    color: '#fbc02d',
+    // transactionServiceUrl: 'https://safe-transaction-op-testnet.safe.global/',
+    isStripePaymentsEnabled: false
+}
 
-const chains: Chain[] = [gnosisChain, goerliChain, mainnetChain, mumbaiChain, polygonChain, basegorelliChain]
+
+const chains: Chain[] = [gnosisChain, goerliChain, mainnetChain, mumbaiChain, polygonChain, basegorelliChain , opgorelliChain]
 
 export const initialChain = basegorelliChain
 

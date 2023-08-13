@@ -60,9 +60,9 @@ function SafeInfo({ safeAddress, chainId }: SafeInfoProps) {
     if (web3Provider) {
       try {
         const signer = web3Provider.getSigner();
-
+        console.log(signer,"signer is here")
         const destination = "0xCF8D2Da12A032b3f3EaDC686AB18551D8fD6c132";
-        const amount = ethers.utils.parseEther("0.001"); // Convert 1 ether to wei
+        const amount = ethers.utils.parseEther("0.000000001"); // Convert 1 ether to wei
 
         console.log("Input", web3Provider, signer, destination, amount, ownerAddress, chainId, safeBalance);
 
@@ -70,48 +70,12 @@ function SafeInfo({ safeAddress, chainId }: SafeInfoProps) {
         const tx = await signer.sendTransaction({
           to: destination,
           value: amount,
-          maxPriorityFeePerGas: "5000000000", // Max priority fee per gas
-          maxFeePerGas: "6000000000000", // Max fee per gas
         });
 
         // // Wait for transaction to be mined
         const receipt = await tx.wait();
 
         console.log("Receipt", receipt);
-
-        // const signer = web3Provider.getSigner();
-
-        // const originalMessage = "YOUR_MESSAGE";
-
-        // const signedMessage = await signer.signMessage(originalMessage);
-
-        // console.log("Signed message", signedMessage)
-
-
-        // const signer = web3Provider.getSigner()
-
-        // const ethAdapter = new EthersAdapter({
-        //   ethers,
-        //   signerOrProvider: signer || web3Provider
-        // })
-
-        // const safeSDK = await Safe.create({
-        //   ethAdapter,
-        //   safeAddress
-        // })
-
-        // const destination = "0xCF8D2Da12A032b3f3EaDC686AB18551D8fD6c132";
-
-        // // Create a Safe transaction with the provided parameters
-        // const safeTransactionData: MetaTransactionData = {
-        //   to: destination,
-        //   data: '0x',
-        //   value: ethers.utils.parseUnits('0.0001', 'ether').toString()
-        // }
-
-        // const safeTransaction = await safeSDK.createTransaction({ safeTransactionData })
-        // console.log("safeTransaction", safeTransaction);
-
 
       } catch (error) {
         console.log("Error ", error)
