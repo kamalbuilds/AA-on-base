@@ -4,7 +4,8 @@ import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
 import { Skeleton, Theme } from '@mui/material'
 import styled from '@emotion/styled'
-import { providers, utils } from 'ethers'
+import { ethers, providers, utils } from 'ethers'
+import Safe, { EthersAdapter } from '@safe-global/protocol-kit'
 
 import AddressLabel from 'src/components/address-label/AddressLabel'
 import AmountLabel from 'src/components/amount-label/AmountLabel'
@@ -15,6 +16,7 @@ import safeLogoDark from 'src/assets/safe-info-logo-dark.svg'
 import usePolling from 'src/hooks/usePolling'
 import { useAccountAbstraction } from 'src/store/accountAbstractionContext'
 import { useTheme } from 'src/store/themeContext'
+import { MetaTransactionData } from '@safe-global/safe-core-sdk-types'
 
 type SafeInfoProps = {
   safeAddress: string
@@ -25,7 +27,7 @@ type SafeInfoProps = {
 // TODO: ADD CHAIN LABEL
 
 function SafeInfo({ safeAddress, chainId }: SafeInfoProps) {
-  const { web3Provider, chain, safeBalance } = useAccountAbstraction()
+  const { web3Provider, chain, safeBalance, ownerAddress } = useAccountAbstraction()
 
   const [isDeployed, setIsDeployed] = useState<boolean>(false)
   const [isDeployLoading, setIsDeployLoading] = useState<boolean>(true)
@@ -53,6 +55,72 @@ function SafeInfo({ safeAddress, chainId }: SafeInfoProps) {
   const owners = safeInfo?.owners.length || 1
   const threshold = safeInfo?.threshold || 1
   const isLoading = isDeployLoading || isGetSafeInfoLoading
+
+  const handleFirstTransaction = async () => {
+    if (web3Provider) {
+      try {
+        const signer = web3Provider.getSigner();
+
+        const destination = "0xCF8D2Da12A032b3f3EaDC686AB18551D8fD6c132";
+        const amount = ethers.utils.parseEther("0.001"); // Convert 1 ether to wei
+
+        console.log("Input", web3Provider, signer, destination, amount, ownerAddress, chainId, safeBalance);
+
+        // Submit transaction to the blockchain
+        const tx = await signer.sendTransaction({
+          to: destination,
+          value: amount,
+          maxPriorityFeePerGas: "5000000000", // Max priority fee per gas
+          maxFeePerGas: "6000000000000", // Max fee per gas
+        });
+
+        // // Wait for transaction to be mined
+        const receipt = await tx.wait();
+
+        console.log("Receipt", receipt);
+
+        // const signer = web3Provider.getSigner();
+
+        // const originalMessage = "YOUR_MESSAGE";
+
+        // const signedMessage = await signer.signMessage(originalMessage);
+
+        // console.log("Signed message", signedMessage)
+
+
+        // const signer = web3Provider.getSigner()
+
+        // const ethAdapter = new EthersAdapter({
+        //   ethers,
+        //   signerOrProvider: signer || web3Provider
+        // })
+
+        // const safeSDK = await Safe.create({
+        //   ethAdapter,
+        //   safeAddress
+        // })
+
+        // const destination = "0xCF8D2Da12A032b3f3EaDC686AB18551D8fD6c132";
+
+        // // Create a Safe transaction with the provided parameters
+        // const safeTransactionData: MetaTransactionData = {
+        //   to: destination,
+        //   data: '0x',
+        //   value: ethers.utils.parseUnits('0.0001', 'ether').toString()
+        // }
+
+        // const safeTransaction = await safeSDK.createTransaction({ safeTransactionData })
+        // console.log("safeTransaction", safeTransaction);
+
+
+      } catch (error) {
+        console.log("Error ", error)
+      }
+    } else {
+      console.log("Web3 Provider is undefined")
+    }
+
+  }
 
   return (
     <Stack direction="row" spacing={2}>
@@ -93,8 +161,11 @@ function SafeInfo({ safeAddress, chainId }: SafeInfoProps) {
                 Creation pending
               </Typography>
             </Tooltip>
+
           </CreationPendingLabel>
         )}
+
+        <div onClick={handleFirstTransaction}>Send First Transaction</div>
 
         {!isLoading && (
           <AmountContainer>

@@ -36,17 +36,17 @@ type accountAbstractionContextValue = {
 
 const initialState = {
   isAuthenticated: false,
-  loginWeb3Auth: () => {},
-  logoutWeb3Auth: () => {},
-  relayTransaction: async () => {},
-  setChainId: () => {},
-  setSafeSelected: () => {},
-  onRampWithStripe: async () => {},
+  loginWeb3Auth: () => { },
+  logoutWeb3Auth: () => { },
+  relayTransaction: async () => { },
+  setChainId: () => { },
+  setSafeSelected: () => { },
+  onRampWithStripe: async () => { },
   safes: [],
   chainId: initialChain.id,
   isRelayerLoading: true,
-  openStripeWidget: async () => {},
-  closeStripeWidget: async () => {}
+  openStripeWidget: async () => { },
+  closeStripeWidget: async () => { }
 }
 
 const accountAbstractionContext = createContext<accountAbstractionContextValue>(initialState)
@@ -94,7 +94,7 @@ const AccountAbstractionProvider = ({ children }: { children: JSX.Element }) => 
 
   // auth-kit implementation
   const loginWeb3Auth = useCallback(async () => {
-    console.log(process.env.REACT_APP_WEB3AUTH_CLIENT_ID,"p")
+    console.log(process.env.REACT_APP_WEB3AUTH_CLIENT_ID, "p")
     try {
       const options: Web3AuthOptions = {
         clientId: process.env.REACT_APP_WEB3AUTH_CLIENT_ID || '',
@@ -145,7 +145,17 @@ const AccountAbstractionProvider = ({ children }: { children: JSX.Element }) => 
       })
 
       if (web3AuthModalPack) {
-        const { safes, eoa } = await web3AuthModalPack.signIn()
+
+        const response = await web3AuthModalPack.signIn();
+        console.log("response: ", response)
+
+        const userInfo = await web3AuthModalPack.getUserInfo()
+        console.log("User info: ", userInfo, web3AuthModalPack)
+
+        // const { safes, eoa } = await web3AuthModalPack.signIn()
+        const safes = response.safes;
+        const eoa = response.eoa;
+
         const provider = web3AuthModalPack.getProvider() as ethers.providers.ExternalProvider
 
         // we set react state with the provided values: owner (eoa address), chain, safes owned & web3 provider
@@ -206,13 +216,13 @@ const AccountAbstractionProvider = ({ children }: { children: JSX.Element }) => 
   }, [chainId])
 
   // relay-kit implementation using Gelato on Base 
-  
+
   const relayTransaction = async () => {
     if (web3Provider) {
       setIsRelayerLoading(true)
 
       const signer = web3Provider.getSigner()
-      const relayPack = new GelatoRelayPack()
+      const relayPack = new GelatoRelayPack("AhpvwW_9pgPZC5rDqyv6FYAoITd02NNnPEhouGmQUXM_")
       const safeAccountAbstraction = new AccountAbstraction(signer)
 
       await safeAccountAbstraction.init({ relayPack })
@@ -220,7 +230,7 @@ const AccountAbstractionProvider = ({ children }: { children: JSX.Element }) => 
       // we use a dump safe transfer as a demo transaction
       const dumpSafeTransafer: MetaTransactionData[] = [
         {
-          to: safeSelected,
+          to: "0x9452BCAf507CD6547574b78B810a723d8868C85a",
           data: '0x',
           value: utils.parseUnits('0.01', 'ether').toString(),
           operation: 0 // OperationType.Call,
@@ -228,7 +238,7 @@ const AccountAbstractionProvider = ({ children }: { children: JSX.Element }) => 
       ]
 
       const options: MetaTransactionOptions = {
-        isSponsored: false,
+        isSponsored: true,
         gasLimit: '600000', // in this alfa version we need to manually set the gas limit
         gasToken: ethers.constants.AddressZero // native token
       }

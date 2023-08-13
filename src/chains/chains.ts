@@ -53,7 +53,7 @@ export const mumbaiChain: Chain = {
     token: 'matic',
     shortName: 'matic',
     label: 'Mumbai',
-    rpcUrl: 'https://rpc-mumbai.maticvigil.com/',
+    rpcUrl: 'https://polygon-mumbai.g.alchemy.com/v2/qE2DQAceN-5PaCcnXaqlQ2WxrAtkiXHM',
     blockExplorerUrl: 'https://mumbai.polygonscan.com',
     color: '#8248E5',
     isStripePaymentsEnabled: true,
@@ -65,7 +65,7 @@ export const basegorelliChain: Chain = {
     token: 'ETHEREUM',
     label: 'ETH',
     shortName: 'ETH',
-    rpcUrl: 'https://goerli.base.org',
+    rpcUrl: 'https://base-goerli.public.blastapi.io',
     blockExplorerUrl: 'https://goerli.basescan.org/',
     color: '#fbc02d',
     transactionServiceUrl: 'https://safe-transaction-base-testnet.safe.global/',
@@ -73,7 +73,7 @@ export const basegorelliChain: Chain = {
 }
 
 
-const chains: Chain[] = [gnosisChain, goerliChain, mainnetChain, mumbaiChain, polygonChain , basegorelliChain]
+const chains: Chain[] = [gnosisChain, goerliChain, mainnetChain, mumbaiChain, polygonChain, basegorelliChain]
 
 export const initialChain = basegorelliChain
 

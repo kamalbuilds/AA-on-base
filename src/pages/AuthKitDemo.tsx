@@ -18,12 +18,11 @@ const AuthKitDemo = () => {
   return (
     <>
       <Typography variant="h2" component="h1">
-        The Auth Kit
+        Create Your Safe
       </Typography>
 
       <Typography marginTop="16px">
-        Generate or authenticate a blockchain account using an email address, social media account,
-        or traditional crypto wallets like Metamask.
+        What is a Safe? A safe is basically a
       </Typography>
 
       <Typography marginTop="24px" marginBottom="8px">
@@ -32,17 +31,10 @@ const AuthKitDemo = () => {
 
       <Stack direction="row" alignItems="center" spacing={2}>
         <Link
-          href="https://github.com/safe-global/safe-core-sdk/tree/main/packages/auth-kit"
+          href="https://docs.safe.global/getting-started/readme"
           target="_blank"
         >
-          Github
-        </Link>
-
-        <Link
-          href="https://docs.safe.global/learn/safe-core-account-abstraction-sdk/auth-kit"
-          target="_blank"
-        >
-          Documentation
+          Safe Documentation
         </Link>
       </Stack>
 
@@ -93,86 +85,11 @@ const AuthKitDemo = () => {
 
       <Divider style={{ margin: '40px 0 30px 0' }} />
 
-      <Typography variant="h3" component="h2" fontWeight="700" marginBottom="16px">
-        How to use it
-      </Typography>
-
-      {/* TODO: create a component for this? */}
-      <CodeContainer>
-        <CodeBlock
-          text={code}
-          language={'javascript'}
-          showLineNumbers
-          startingLineNumber={96}
-          theme={atomOneDark}
-        />
-      </CodeContainer>
     </>
   )
 }
 
 export default AuthKitDemo
-
-const code = `import { Web3AuthModalPack } from '@safe-global/auth-kit'
-import { OpenloginAdapter } from '@web3auth/openlogin-adapter'
-
-const options: Web3AuthOptions = {
-  clientId: process.env.REACT_APP_WEB3AUTH_CLIENT_ID,
-  web3AuthNetwork: 'testnet',
-  chainConfig: {
-    chainNamespace: CHAIN_NAMESPACES.EIP155,
-    chainId: chainId,
-    rpcTarget: rpcTarget
-  },
-  uiConfig: {
-    theme: 'dark',
-    loginMethodsOrder: ['google', 'facebook']
-  }
-}
-
-const modalConfig = {
-  [WALLET_ADAPTERS.TORUS_EVM]: {
-    label: 'torus',
-    showOnModal: false
-  },
-  [WALLET_ADAPTERS.METAMASK]: {
-    label: 'metamask',
-    showOnDesktop: true,
-    showOnMobile: false
-  }
-}
-
-const openloginAdapter = new OpenloginAdapter({
-  loginSettings: {
-    mfaLevel: 'mandatory'
-  },
-  adapterSettings: {
-    uxMode: 'popup',
-    whiteLabel: {
-      name: 'Safe'
-    }
-  }
-})
-
-const web3AuthModalPack = new Web3AuthModalPack({
-  txServiceUrl: 'https://safe-transaction-{chain}.safe.global',
-})
-
-await web3AuthModalPack.init({
-  options,
-  adapters: [openloginAdapter],
-  modalConfig
-})
-
-// Allow to login and get the derived EOA
-await web3AuthModalPack.signIn()
-
-// Logout
-await web3AuthModalPack.signOut()
-
-// Get the provider
-web3AuthModalPack.getProvider()
-`
 
 const ConnectContainer = styled(Box)<{
   theme?: Theme

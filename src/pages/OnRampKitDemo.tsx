@@ -154,59 +154,11 @@ const OnRampKitDemo = () => {
 
       <Divider style={{ margin: '40px 0 30px 0' }} />
 
-      <Typography variant="h3" component="h2" fontWeight="700" marginBottom="16px">
-        How to use it
-      </Typography>
-
-      {/* TODO: create a component for this? */}
-      <CodeContainer>
-        <CodeBlock
-          text={code}
-          language={'javascript'}
-          showLineNumbers
-          startingLineNumber={96}
-          theme={atomOneDark}
-        />
-      </CodeContainer>
     </>
   )
 }
 
 export default OnRampKitDemo
-
-const code = `import { StripePack } from '@safe-global/onramp-kit'
-
-const stripePack = new StripePack({
-  stripePublicKey: process.env.REACT_APP_STRIPE_PUBLIC_KEY,
-  onRampBackendUrl: process.env.REACT_APP_STRIPE_BACKEND_BASE_URL
-})
-
-await stripePack.init()
-
-const sessionData = await stripePack.open({
-  element: '#stripe-root',
-  theme: 'light',
-  defaultOptions: {
-    transaction_details: {
-      wallet_address: walletAddress,
-      supported_destination_networks: ['ethereum', 'polygon'],
-      supported_destination_currencies: ['usdc'],
-      lock_wallet_address: true
-    },
-    customer_information: {
-      email: 'john@doe.com'
-    }
-  }
-}))
-
-stripePack.subscribe('onramp_ui_loaded', () => {
-  console.log('UI loaded')
-})
-
-stripePack.subscribe('onramp_session_updated', (e) => {
-  console.log('Session Updated', e.payload)
-})
-`
 
 const ConnectedContainer = styled(Box)<{
   theme?: Theme
