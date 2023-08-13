@@ -21,7 +21,7 @@ import { useAccountAbstraction } from 'src/store/accountAbstractionContext'
 
 const transferAmount = 0.01
 
-const RelayerKitDemo = () => {
+const RelayerKit = () => {
   const {
     chainId,
     chain,
@@ -103,7 +103,7 @@ const RelayerKitDemo = () => {
   )
 }
 
-export default RelayerKitDemo
+export default RelayerKit
 
 const ConnectedContainer = styled(Box)<{
   theme?: Theme
