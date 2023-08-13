@@ -190,7 +190,7 @@ const AccountAbstractionProvider = ({ children }: { children: JSX.Element }) => 
     const getSafeAddress = async () => {
       if (web3Provider) {
         const signer = web3Provider.getSigner()
-        const relayPack = new GelatoRelayPack()
+        const relayPack = new GelatoRelayPack("AhpvwW_9pgPZC5rDqyv6FYAoITd02NNnPEhouGmQUXM_")
         const safeAccountAbstraction = new AccountAbstraction(signer)
 
         await safeAccountAbstraction.init({ relayPack })
@@ -198,6 +198,8 @@ const AccountAbstractionProvider = ({ children }: { children: JSX.Element }) => 
         const hasSafes = safes.length > 0
 
         const safeSelected = hasSafes ? safes[0] : await safeAccountAbstraction.getSafeAddress()
+
+        console.log("Safe Address", await safeAccountAbstraction.getSafeAddress())
 
         setSafeSelected(safeSelected)
       }
