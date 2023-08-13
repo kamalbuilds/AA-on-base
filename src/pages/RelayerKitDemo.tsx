@@ -54,30 +54,7 @@ const RelayerKitDemo = () => {
         Fund any project by just entering the project id and amount that you want to contribute.
       </Typography>
 
-
-
-      <Stack direction="row" alignItems="center" spacing={2}>
-        <Link
-          href="https://github.com/safe-global/safe-core-sdk/tree/main/packages/relay-kit"
-          target="_blank"
-        >
-          Github
-        </Link>
-
-        <Link
-          href="https://docs.safe.global/learn/safe-core-account-abstraction-sdk/relay-kit"
-          target="_blank"
-        >
-          Documentation
-        </Link>
-      </Stack>
-
       <Divider sx={{ margin: '32px 0 28px 0' }} />
-
-      {/* Relay Demo */}
-      <Typography variant="h4" component="h2" fontWeight="700" marginBottom="16px">
-        Interactive demo
-      </Typography>
 
       {!isAuthenticated ? (
         <ConnectedContainer
@@ -96,7 +73,7 @@ const RelayerKitDemo = () => {
           </Button>
         </ConnectedContainer>
       ) : (
-        <Box display="flex" gap={3}>
+        <Box display="flex" flexDirection="column" gap={3}>
           {/* safe Account */}
           <ConnectedContainer>
             <Typography fontWeight="700">Safe Account</Typography>
@@ -109,78 +86,16 @@ const RelayerKitDemo = () => {
             {safeSelected && <SafeInfo safeAddress={safeSelected} chainId={chainId} />}
           </ConnectedContainer>
 
-          {/* Relay Transaction */}
-          <ConnectedContainer
-            display="flex"
-            flexDirection="column"
-            gap={2}
-            alignItems="flex-start"
-            flexShrink={0}
-          >
-            <Typography fontWeight="700">Relayed transaction</Typography>
-
-            {/* Gelato status label */}
-            {gelatoTaskId && (
-              <GelatoTaskStatusLabel
-                gelatoTaskId={gelatoTaskId}
-                chainId={chainId}
-                setTransactionHash={setTransactionHash}
-                transactionHash={transactionHash}
-              />
-            )}
-
-            {isRelayerLoading && <LinearProgress sx={{ alignSelf: 'stretch' }} />}
-
-            {!isRelayerLoading && !gelatoTaskId && (
-              <>
-                <Typography fontSize="14px">
-                  Check the status of your relayed transaction.
-                </Typography>
-
-                {/* send fake transaction to Gelato relayer */}
-                <Button
-                  startIcon={<SendIcon />}
-                  variant="contained"
-                  disabled={!hasNativeFunds}
-                  onClick={relayTransaction}
-                >
-                  Send Transaction
-                </Button>
-
-                {!hasNativeFunds && chain?.faucetUrl && (
-                  <Link href={chain.faucetUrl} target="_blank">
-                    Request 0.5 {chain.token}.
-                  </Link>
-                )}
-              </>
-            )}
-
-            {/* Transaction details */}
-            <Stack gap={0.5} display="flex" flexDirection="column">
-              <Typography>
-                Transfer {transferAmount} {chain?.token}
-              </Typography>
-
-              {safeSelected && (
-                <Stack gap={0.5} display="flex" flexDirection="row">
-                  <AddressLabel address={safeSelected} showCopyIntoClipboardButton={false} />
-
-                  <ArrowRightAltRoundedIcon />
-
-                  <AddressLabel address={safeSelected} showCopyIntoClipboardButton={false} />
-                </Stack>
-              )}
-            </Stack>
+          <ConnectedContainer>
+            <Head> Fund Project </Head>
+            <Forms />
           </ConnectedContainer>
         </Box>
       )}
 
       <Divider style={{ margin: '40px 0 30px 0' }} />
 
-      <ConnectedContainer>
-        <Head> Fund Project </Head>
-        <Forms />
-      </ConnectedContainer>
+
 
 
 

@@ -39,7 +39,7 @@ const Intro = ({ setStep }: IntroProps) => {
             01
           </OrderLabel>
           <Typography fontWeight="700" fontSize="20px">
-            Auth Kit
+            Create Safe
           </Typography>
         </Box>
 
@@ -48,16 +48,7 @@ const Intro = ({ setStep }: IntroProps) => {
             02
           </OrderLabel>
           <Typography fontWeight="700" fontSize="20px">
-            Onramp Kit
-          </Typography>
-        </Box>
-
-        <Box display="flex" gap={1}>
-          <OrderLabel fontSize="10px" fontWeight="700">
-            03
-          </OrderLabel>
-          <Typography fontWeight="700" fontSize="20px">
-            Relay Kit
+            Fund Project
           </Typography>
         </Box>
       </Box>
@@ -65,11 +56,7 @@ const Intro = ({ setStep }: IntroProps) => {
       <Divider style={{ alignSelf: 'stretch', margin: '42px 0' }} />
 
       <Typography variant="h2" fontWeight="700" fontSize="20px">
-        To start using interactive demo select a network:
-      </Typography>
-
-      <Typography>
-        Consider that the Onramp kit will only work on Mumbai test chain and US based connection.
+        First select the network in which you want to create your safe
       </Typography>
 
       <Box display="flex" gap={2} marginTop="32px" alignItems="center">

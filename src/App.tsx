@@ -109,12 +109,7 @@ const steps = [
   {
     // Auth Kit step
     component: AuthKitDemo,
-    nextLabel: 'to Onramp Kit'
-  },
-  {
-    // Onramp Kit step
-    component: OnRampKitDemo,
-    nextLabel: 'to Relay Kit'
+    nextLabel: 'to Fund Project'
   },
   {
     // Relay Kit step

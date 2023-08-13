@@ -18,12 +18,11 @@ const AuthKitDemo = () => {
   return (
     <>
       <Typography variant="h2" component="h1">
-        The Auth Kit
+        Create Your Safe
       </Typography>
 
       <Typography marginTop="16px">
-        Generate or authenticate a blockchain account using an email address, social media account,
-        or traditional crypto wallets like Metamask.
+        What is a Safe? A safe is basically a
       </Typography>
 
       <Typography marginTop="24px" marginBottom="8px">
@@ -32,17 +31,10 @@ const AuthKitDemo = () => {
 
       <Stack direction="row" alignItems="center" spacing={2}>
         <Link
-          href="https://github.com/safe-global/safe-core-sdk/tree/main/packages/auth-kit"
+          href="https://docs.safe.global/getting-started/readme"
           target="_blank"
         >
-          Github
-        </Link>
-
-        <Link
-          href="https://docs.safe.global/learn/safe-core-account-abstraction-sdk/auth-kit"
-          target="_blank"
-        >
-          Documentation
+          Safe Documentation
         </Link>
       </Stack>
 
